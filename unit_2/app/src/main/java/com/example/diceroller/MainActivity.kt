@@ -1,9 +1,11 @@
 package com.example.diceroller
 
 import android.os.Bundle
+import android.provider.CalendarContract.Colors
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -45,10 +47,13 @@ fun DiceRollerApp() {
         else -> R.drawable.dice_6
     }
 
+    val rollDice = {
+        result = (1..6).random()
+    }
+
     Column (horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
-        Image(painter = painterResource(id = imageResource), contentDescription = "A simple dice image")
-        Button(onClick = { result = (1..6).random()}) {
-            Text(text = "Roll")
+        Button(onClick = rollDice, modifier=Modifier.background(Colors.)) {
+            Image(painter = painterResource(id = imageResource), contentDescription = "A simple dice image")
         }
     }
 }
